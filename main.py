@@ -32,15 +32,15 @@ def extraer_datos(end_point, fecha_ini, fecha_fin):
     return data
 
 #get fechas
-ayer = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
-
-#extraer datos de API
-ReportePlaya = extraer_datos("ReportePlaya", ayer, ayer)
-TrafCamBalanza = extraer_datos("TrafCamBalanza", ayer, ayer)
-Molienda = extraer_datos("Molienda", ayer, ayer)
-
 
 def ejecutar_tareas():
+    ayer = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+    logging.info(f"Obteniendo datos de fecha: {ayer}")
+    #extraer datos de API
+    ReportePlaya = extraer_datos("ReportePlaya", ayer, ayer)
+    TrafCamBalanza = extraer_datos("TrafCamBalanza", ayer, ayer)
+    Molienda = extraer_datos("Molienda", ayer, ayer)
+    
     df_ReportePlaya = pd.DataFrame(ReportePlaya)
     df_TrafCamBalanza = pd.DataFrame(TrafCamBalanza)
     df_Molienda = pd.DataFrame(Molienda)
